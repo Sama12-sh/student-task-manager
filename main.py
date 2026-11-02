@@ -1,10 +1,29 @@
+from datetime import datetime, date
+
 tasks = []
 
 def add_task():
-    title = input("Enter task name: ")
-    Date = input("Enter due date (DD.MM.YYYY):")
-    note = input("Do you want to add notes?(y/n)")
+    title = input("Enter task name: ").strip()
 
+    while not title:
+        title = input("Enter task name: ").strip()
+    while True:
+        Date = input("Enter due date (DD.MM.YYYY):")
+
+        try:
+            due_date = datetime.strptime(Date, "%d.%m.%Y").date()
+            if due_date < date.today():
+                print("Date cannot be in the past!")
+                continue
+            break
+        except ValueError:
+            print("Invalid date! Please use DD.MM.YYYY")
+
+
+    note = input("Do you want to add notes?(y/n)").lower().strip()
+    while(note != "n" and note != "y"):
+
+        note = input("Do you want to add notes?(y/n)").lower().strip()
     if(note == "y"):
         Note = input("Enter your notes")
     else:
@@ -66,7 +85,7 @@ def delete_task():
     else:
         print("The task is not found")
 
-def meunu():
+def menu():
         print("\033[1;34m===== Student Task Manager =====\033[0m")
 
 
@@ -93,4 +112,4 @@ def meunu():
             else:
                 print("Invalid option!")
 
-meunu()
+menu()
