@@ -18,15 +18,21 @@ def add_task():
 
 def show_tasks():
     print("\033[1;34m===== Your Tasks =====\033[0m")
-    for task in tasks:
-        print(task["title"])
-        print(task["Date"])
-        if(task["completed"] == False):
-            print("Task is not completed")
-        else:
-            print("Task is completed")
-        print(task["Notes"])
-        print("____________")
+
+    if not tasks:
+        print("No tasks available.")
+
+    else:
+
+        for task in tasks:
+            print(task["title"])
+            print(task["Date"])
+            if(task["completed"] == False):
+                print("Task is not completed")
+            else:
+                print("Task is completed")
+            print(task["Notes"])
+            print("____________")
 
 def Complete_task():
 
@@ -63,13 +69,14 @@ def delete_task():
 def meunu():
         print("\033[1;34m===== Student Task Manager =====\033[0m")
 
-        print("1. Add task")
-        print("2. Show Tasks")
-        print("3. Delete Tasks")
-        print("4. Complete Task")
-        print("5. Exit")
 
         while True:
+
+            print("1. Add task")
+            print("2. Show Tasks")
+            print("3. Delete Tasks")
+            print("4. Complete Task")
+            print("5. Exit")
             opt = input("Choose an option: ")
 
             if opt == "1":
