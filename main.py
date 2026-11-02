@@ -1,0 +1,89 @@
+tasks = []
+
+def add_task():
+    title = input("Enter task name: ")
+    Date = input("Enter due date (DD.MM.YYYY):")
+    note = input("Do you want to add notes?(y/n)")
+
+    if(note == "y"):
+        Note = input("Enter your notes")
+    else:
+        Note = "No added Notes"
+
+
+    task = {"title": title,"Date": Date,"completed": False, "Notes": Note}
+    tasks.append(task)
+
+
+
+def show_tasks():
+    print("\033[1;34m===== Your Tasks =====\033[0m")
+    for task in tasks:
+        print(task["title"])
+        print(task["Date"])
+        if(task["completed"] == False):
+            print("Task is not completed")
+        else:
+            print("Task is completed")
+        print(task["Notes"])
+        print("____________")
+
+def Complete_task():
+
+    com = input("Write the completed Task:")
+
+    found = False
+
+    for task in tasks:
+        if(com == task["title"]):
+            task["completed"] = True
+            found = True
+            break
+    if found:
+        print("Task marked as completed!")
+    else:
+        print("Task not found!")
+
+def delete_task():
+
+    found = False
+    deleted = input("Enter the task to delete:")
+
+    for task in tasks:
+        if(deleted == task["title"]):
+            tasks.remove(task)
+            found = True
+            break
+
+    if found:
+        print("The task is deleted")
+    else:
+        print("The task is not found")
+
+def meunu():
+        print("\033[1;34m===== Student Task Manager =====\033[0m")
+
+        print("1. Add task")
+        print("2. Show Tasks")
+        print("3. Delete Tasks")
+        print("4. Complete Task")
+        print("5. Exit")
+
+        while True:
+            opt = input("Choose an option: ")
+
+            if opt == "1":
+                add_task()
+            elif opt == "2":
+                show_tasks()
+            elif opt == "3":
+                delete_task()
+            elif opt == "4":
+                Complete_task()
+            elif opt == "5":
+                print("Goodbye!")
+                break
+            else:
+                print("Invalid option!")
+
+meunu()
